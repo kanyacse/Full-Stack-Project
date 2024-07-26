@@ -1,0 +1,31 @@
+/* src/components/OrderForm.css */
+.card {
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.btn {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem;
+  }
+}

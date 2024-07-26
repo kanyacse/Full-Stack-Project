@@ -1,0 +1,40 @@
+/* src/components/ImageSlider.css */
+.slider-container {
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Hide overflow to prevent scrolling */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .slide-item {
+    position: relative; /* Position child elements absolutely within this */
+  }
+  
+  .slider-image {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 350px; /* Optional: Limit the height if needed */
+    object-fit: cover; /* Cover the entire container */
+  }
+  
+  .slide-content {
+    position: absolute; /* Position over the image */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the content */
+    color: white; /* Text color */
+    text-align: center; /* Center the text */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners for the background */
+  }
+  
+  .slide-content h2 {
+    margin: 0; /* Remove default margin */
+  }
+  
+  .slide-content p {
+    margin: 10px 0 0; /* Margin for paragraph text */
+  }
+  

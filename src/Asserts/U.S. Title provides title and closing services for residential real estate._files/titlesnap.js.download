@@ -1,0 +1,64 @@
+let _siteUrl = '';
+let _company_calc_code = '';
+if (typeof jQuery === 'undefined') {
+    throw new Error('TitleSnap JS package requires jQuery');
+}
+let loadtitlesnapcalc = (calcinput) => {
+    if (!calcinput.containerid)
+        calcinput.containerid = '#CalcTitleSnap';
+    let containerElement = $(calcinput.containerid);
+    if (containerElement.length == 0)
+        throw new Error('TitleSnap calculator container not define..');
+    if (!calcinput.siteurl)
+        throw new Error('TitleSnap siteurl is not passed..');
+    _siteUrl = calcinput.siteurl;
+    if (!calcinput.company_calc_code)
+        throw new Error('Company calculator code is not passed..');
+    _company_calc_code = calcinput.company_calc_code;
+    $('my-app').remove();
+    $(calcinput.containerid).removeClass('calctitlesnap').addClass('calctitlesnap').removeClass('loaderHeight').addClass('loaderHeight')
+        .append('<my-app><div id="loadingBox" *ngIf="showLoading" style="position:absolute; width: 100%;height:100%;top:0px;left:0px; background:#aaaaaa _siteUrl(\'' + _siteUrl + 'pages/image/ui-bg_flat_0_aaaaaa_40x100.png\') 50% 50% repeat-x;opacity: 0.3;filter: Alpha(Opacity=30);z-index:1000;"> <img id="mySpinner" src="' + _siteUrl + 'pages/Image/ajax-loading.gif" style="position:absolute; top: 50%; left: 45%; width:auto;" /> </div></my-app>');
+    PackageUtility.loadcss([
+        _siteUrl + 'CSS/bootstrap.min.css',
+        _siteUrl + 'JavaScriptPackage/TitleSnapTheme.css?v=' + Date.now()
+    ]);
+    
+
+  PackageUtility.loadjs([
+
+    _siteUrl + 'dist/runtime.js?v=' + Date.now(),
+    _siteUrl + 'dist/main.js?v=' + Date.now(),
+    _siteUrl + 'dist/polyfills.js',
+    _siteUrl + 'dist/vendor.js'
+  ]);
+
+
+  PackageUtility.addbaseurl();
+};
+
+class PackageUtility {
+    static loadcss(urls) {
+        $.each(urls, (index, url) => {
+            if ($("head link[href = '" + url + "']").length == 0)
+                $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', url));
+        });
+    }
+    static loadjs(urls) {
+        $.each(urls, (index, url) => {
+            if ($("head script[src = '" + url + "']").length == 0) {
+                $('head').append($('<script type="text/javascript" />').attr('src', url));
+            }
+        });
+
+    }
+    static addbaseurl() {
+        let url = window.location.pathname;
+        let basetag = $("head base");
+        if (basetag.length == 0)
+            $('head').append($('<base/>').attr('href', url));
+        basetag.attr('href', url);
+    }
+    
+  
+}
+
